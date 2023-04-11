@@ -1,0 +1,41 @@
+server:
+  port: 8083
+
+spring:
+  profiles:
+    active: activemq #kafka
+  kafka:
+    bootstrap-servers: localhost:9092
+    consumer:
+      group-id: "default"
+  datasource:
+    url: jdbc:mysql://localhost:3306/eventdb
+    username: max
+    password: 1111
+  jpa:
+    hibernate:
+      use-new-id-generator-mappings: false
+      naming:
+        physical-strategy: org.hibernate.boot.model.naming.PhysicalNamingStrategyStandardImpl
+    properties:
+      show_sql: true
+  rabbitmq:
+    host: localhost
+    port: 5672
+    username: guest
+    password: guest
+  artemis:
+    broker-url: "tcp://localhost:61616"
+    user: artemis
+    password: artemis
+    mode: native
+
+topic:
+  send:
+    create: create.event.notification
+    update: update.event.notification
+    delete: delete.event.notification
+  receive:
+    create: create.event.request
+    update: update.event.request
+    delete: delete.event.request
